@@ -1,0 +1,384 @@
+#18 AUTOBOXING AND POJO
+
+
+WHY ONE PUBLIC CLASS PER FILE
+WHY NAME OF THAT PUBLIC CLASS SHOULD BE AS SAME AS FILENAME
+ 
+Java mein ye rule compiler ko code organize aur identify karne mein easy banane ke liye hai.
+
+ (ANSWER FOR 1). Ek file mein only ONE public class kyu?
+
+Maan lo tumhari file ka naam hai:
+Student.java
+
+Example CODE
+
+public class Student{
+}
+
+public class Teacher {
+}
+
+
+Abb compiler of java will get confused that which class has to be main public class
+Isliye Java bolta hai:
+Ek .java file mein maximum ONE public class rakho.
+
+AGR MEIN asa likhu ki :->
+
+class Student {
+}
+class Teacher {
+}
+
+this is acceptable by the compiler. Hence there will be only one public class.
+
+
+PUBLIC CLASS HOTI KYA HAI ?
+
+PUBLIC IS THE ACCESS MODIFIER
+CLASS IS TO TELL JAVA THAT YOU ARE CREATING A CLASS
+
+2.WHAT DOES CLASS REALLY MEANS?
+
+CLASS IS THE BLUEPRINT FOR CREATING OBJECTS
+
+EXAMPLE:-
+
+class Student {
+String name;
+int age ; }
+
+Here Student is the class
+
+What does the public really means
+public is to used for accessing the class from other classes/packages as well
+
+Example code-
+public class Student {
+}
+
+Here student is public, other classes can access it.
+
+ like this
+class Test{
+public static void main(String args[]){
+Student s = new Student();
+ }
+}
+
+
+(ANSWER 2).Public class ka naam filename ke same kyu hona chahiye?
+
+
+AGR main likhu
+
+public class Student{
+}
+
+Then the name of file must be
+Student.java
+
+Java basically ek fixed relationship rakhta hai:
+
+       public class Student
+                ↓
+          Student.java
+
+
+
+Ye rule sirf public class ke liye hai
+
+Ye valid hai:
+
+// Student.java(file name)
+
+public class Student {
+}
+
+class Teacher {
+}
+
+class Car {
+}
+
+Ek public class → Student
+
+Aur filename → Student.java ✅
+
+
+
+Interview mein simple answer
+
+Agar interviewer puche "Why should the public class name be same as filename in Java?", tum bol sakte ho:
+
+"Java uses this rule so that the compiler can easily identify and locate the public class from its .java file."
+
+Aur "Why only one public class per file?"
+
+"Because a Java file can have only one public top-level class, and that class's name must match the filename, which gives Java a clear structure for locating public classes."
+
+Ek line mein yaad rakho:
+
+1 Java file → maximum 1 public class → public class name = filename.
+
+
+public static void main(String args[])
+ {
+
+    // program execution yahan se start hoti hai
+
+    hello();
+    calculate();
+}
+
+
+MAIN FUNCTION STATIC KYU HOTA HAI ?
+
+ISILIYE HOTA HAI KYUKI JAB BHI HUM CLASS KA OBJECT NA BANANA PADE ISS MAIN FUCTION KO EXECUTE KARNE KE LIYE....
+JVM DIRECTLY classname.main(); karke call karle
+
+public isiliye hota hai taki JVM USKO ACCESS KARLE....
+
+
+AUTOBOXING / UNBOXING
+
+WRAPPER CLASS
+
+THERE ARE TWO TYPES OF DATA TYPES
+PRIMITIVE & NON PRIMITIVE
+
+JAVA HUMKO PRIMITIVE DATA TYPES KE LIYE WRAPPER CLASSES DETA HAI...
+ye wrapper class siddha (non primitives) mein ati hai... `
+example:-
+
+int --> Integer
+long -->Long
+short-->Short
+float-->Float
+double-->Double
+char --> Char
+boolean --> Boolean
+
+--> this points to non primitive (wrapper classes)
+
+int a = 10;
+a is primitive value with int
+
+now with wrapper class
+
+Integer a = new Integer (10); (THIS IS EXPLICIT OBJECT CREATION)  // Here in this a is in stack memory and 10 is in the heap memory . the a in stack memory ---->>> points heap memory stored memory 10. Heap memory mein actual object create hoga and a (refrence variable) points to heap memory 10.
+
+ Integer a = 10; // AUTOBOXING KARTA HAI
+                       AUTOBOXING -->> INTEGER OBJECT
+ 
+
+      int 10
+    ￬ autoboxing
+  Integer object
+    ￬
+       a
+
+
+2.  Integer a = new Integer (10);
+ yaha par explicitly new se Integer object create kar raha hu ...
+
+
+new Integer (10)
+       ↓
+Integer object
+       ↑
+       a
+
+
+Wrapper ka kaam primitive value ko object form mein represent karna hai.
+
+
+WRAPPER CLASSES EXIST HI KYU KARTI HAI??
+
+COLLECTION FREAMEWORK CLASSES ARE MADE TO WORK ON WRAPPER CLASS (Integer) LIKE THIS THEY CAN'T WORK ON PRIMITIVE DATA TYPES...
+
+
+2. A IS OOP BASED LANGUAGE SO JAVA WANTS FOR EVERY PRIMITIVE THERE SHOULD BE A NON PRIMITIVE SUBSTITUTABLE CLASS.
+ 
+SIMPLE WORDS MEIN YAAD RAKHO KI
+
+int AGR EK PRIMITIVE DATA TYPE HAI THO
+INTEGER USKI NON PRIMITIVE CLASS HAI.
+INTEGER int KI NON PRIMITIVE SUBSTITUTABLE CLASS HAI. THESE CLASS PROVIDES MANY THINGS TO US.
+
+PRIMITIVE DATA TYPES ARE MORE EFFICIENT AND LIGHTWEIGHT TO USE.
+THESE KEEP THE PERFORMANCE OF THE JAVA FASTER AND SIMPLER.
+PRIMITIVES ARE NOT OBJECTS WHERE AS WRAPPER CLASSES ARE OBJECTS
+
+For an interview, you can say:
+
+“Primitive types are used to store simple values efficiently and use less memory. Wrapper classes represent those primitive values as objects, which are needed in places like collections. So, primitives are mainly for performance, while wrapper classes are used when an object is required.”
+
+
+
+
+// AUTOBOXING / UNBOXING
+
+*** AUTOBOXING
+
+JAB EK PRIMITIVE CONVERT HOKE WRAPPER CLASS MEIN JATA HAI USKO KAHETE HAI AUTOBOXING..
+
+  EX:->       int → Integer
+
+int x = 10;
+Integer y = x; // ye wala x primitive x hai kyuki ye int se aa raha hai..
+                 aab ye convert hoke Integer mein chala jayega & this happens Automatically.
+ 
+// Hence this is called AUTOBOXING IN JAVA.
+
+Integer y = new Integer (x); // old java version
+Integer y = Integer.valueof (x); // new java version
+why the new version is best because it uses caching to make it more optimised..
+
+class Integer
+ {   // andar se class dikhti kaisi hai
+ int value;
+// constructor hote hai
+Static value of (int x ){  //return type of this Static method
+
+}
+
+kyuki main call kar raha hu
+Integer.valueof(x); yani ki class (Integer) to method name (valueof)..
+
+**** UNBOXING
+
+Integer x = 10;
+int y =x ;  // Unboxing
+
+now see what happened internally
+
+int y = x.intValue();
+x is converted to primitive integer
+intValue() this method is called on X, x kya hai Interger hai yani ki intvalue() iss naam ka method bhi meri Integer class mein hona chaiye.
+
+
+== operator  v/s equals()
+
+
+int x =100;
+int y =100
+system.out.println(x == y);  // print hogi TRUE VALUE
+ 
+Integer a =200;
+Integer b =200;
+system.out.println(a == b); // print hogi false value
+
+asa kyu hau lets understand the == internally
+Integer x =200;
+Integer x = Integer.valueOf(200);
+x = new Integer(200);
+x will be in stack memory
+x points to 200 in heap memory
+same with y
+
+abb
+== x & y ki value ko compare nhi karega
+lakin vo x aur y object ki reference variable ko compare karega.
+
+IT COMPARES REFERENCES NOT VALUES
+
+HUM == SE PUCH RAHE HAI KI KYA X==Y HAI ??
+
+FASLE KYU AYA ISILIYE AAYA KYUKI X KA ADDRESS HOGA 1001 AUR Y KA ADDRESS HOGA 2001. THO AAB HUA KYA KI ADDRESS KE DIFFERENCE KE KARAN FALSE PRINT HO GAYA.
+
+ABB ANSWER KO TRUE KAISE PRINT KARE.
+
+x.intValue() == y.intValue()  // ABB HOGA YE KI x.(value inside)== y.(value inside) the both values are comparing to each other so now this makes sense to equal operator.
+
+samjho x ka matlab hi 100 hai
+y ka matlab hi 100 hai
+x aur y dono 100 ko refer nhi kar rahe hai.
+x and y are names of those container where the 100 is stored.
+
+here in non primitives
+
+if we are not asking the value of the references and when the == is used then it will point using there addresses stored inside the stack memory to heap memory.
+
+Another method inside the Integer class
+
+x.equals (y)
+now this will provide true
+
+
+// POJO CLASSES
+
+PLAIN OLD JAVA OBJECT
+
+ek class sample banai
+uske in andar { int x; String y;
+ek constructor banaya Sample (int x , String y ){
+}
+
+kuch getter & sette honge
+}
+
+WHY THEY EXIST WHAT'S THERE PURPOSE ?
+
+JAISE HUMKO EK STUDENT REPRESENT KARNA HAI THO USKE LIYE HUMKO POJO HI THO BANNI PADEGI KYUKI USKI KUCH CHARACTERISTICS HONGI
+THO PROGRAMMING MAIN USKI CLASS BANA LUNGA
+THO EK STUDENT KO PROGRAMMING MEIN MAINE MODEL KARA
+THESE CLASSES ARE GENERALLY CALLED MODEL CLASSES IN JAVA.
+EK REAL POJO VO HI HOGI JISMEIN HARD CORE BUSINESS LOGIC NA LIKHA HO
+YE CLASS JAVA MEIN SIRF DATA HOLD KARNE KE LIYE BANAI JATI HAI
+SIMPLE CLASS JO SIRF DATA REPRESENT KAREGI USKO COMMONLY POJO KAHA JATA HAI.
+
+ISS CLASS MEIN :->
+GETTER
+SETTER
+METHODS
+CONSTRUCTORS
+FIELD OR VARIABLES
+NO FRAMEWORKS ARE PRESENT HERE IN THIS CLASS
+
+
+ABSTRACT CLASSES
+
+THE CLASS WHICH CANNOT INSTANTIATED
+
+DO THESE CLASSES CONTAIN CONSTRUCTORS ?
+DO THIS CLASS CAN BE FINAL ?
+DO STATIC METHODS ARE PRESENT IN THIS CLASS?
+DO THESE ARE MEANT TO BE EXTENDED?
+
+CODE FOR THIS :->
+
+
+public class Demo
+{
+public static void main (String args[])
+{
+
+
+
+}
+}
+
+
+
+abstract class Animal
+{
+abstract void makeSound();
+
+void sleep()
+{
+System.out.println("Sleeping");
+ }
+}
+
+
+
+class Dog extends Animal
+{
+@Override
+void makeSound()
+{
+System.out.println("Making barking sound");
+}
+}
